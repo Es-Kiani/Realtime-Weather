@@ -2,10 +2,12 @@
 import datetime
 import json
 from requests import request
+import requests 
 from time import strftime
 from tkinter import *
 from tkinter import font, messagebox, ttk
 from PIL import Image, ImageTk
+import os
 
 # =============================== Window Setting ==================================
 window = Tk()
@@ -30,67 +32,67 @@ API_Key = "b80b9c6cfb48041a2190dde4b1024127"
 # ================================ Background =====================================
 if Hour == 00 or Hour == 01.0 or Hour == 02.0:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/00.jpg"))
+        str(os.getcwd()) + "\BG/00.jpg"))
 
 elif Hour == 03.0 or Hour == 04.0:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/3.jpg"))
+        str(os.getcwd()) + "\BG/3.jpg"))
 
 elif Hour == 05.0:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/5.jpg"))
+        str(os.getcwd()) + "\BG/5.jpg"))
 
 elif Hour == 06.0:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/6.jpg"))
+        str(os.getcwd()) + "\BG/6.jpg"))
 
 elif Hour == 07.0:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/7.jpg"))
+        str(os.getcwd()) + "\BG/7.jpg"))
 
 elif Hour == 08.0:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/8.jpg"))
+        str(os.getcwd()) + "\BG/8.jpg"))
 
 elif Hour == 09.0 or Hour == 10:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/9.jpg"))
+        str(os.getcwd()) + "\BG/9.jpg"))
 
 elif Hour == 11 or Hour == 12:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/11.jpg"))
+        str(os.getcwd()) + "\BG/11.jpg"))
 
 elif Hour == 13:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/13.jpg"))
+        str(os.getcwd()) + "\BG/13.jpg"))
 
 elif Hour == 14 or Hour == 15:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/14.jpg"))
+        str(os.getcwd()) + "\BG/14.jpg"))
 
 elif Hour == 16 or (Hour == 17 and Minute <= 30):
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/16.jpg"))
+        str(os.getcwd()) + "\BG/16.jpg"))
 
 elif (Hour == 17 and Minute > 30) or (Hour == 18 and Minute <= 30):
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/17-30.jpg"))
+        str(os.getcwd()) + "\BG/17-30.jpg"))
 
 elif Hour == 18 and Minute > 30:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/18-30.jpg"))
+        str(os.getcwd()) + "\BG/18-30.jpg"))
 
 elif Hour == 19:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/19.jpg"))
+        str(os.getcwd()) + "\BG/19.jpg"))
 
 elif Hour == 20:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/20.jpg"))
+        str(os.getcwd()) + "\BG/20.jpg"))
 
 elif Hour == 21 or Hour == 22 or Hour == 23:
     BG_Img = ImageTk.PhotoImage(Image.open(
-        "E:\MyProjects\Python\Weather App\BG/21.jpg"))
+        str(os.getcwd()) + "\BG/21.jpg"))
 
 background_label = Label(window, image=BG_Img)
 background_label.pack(side="bottom", fill="both", expand="yes")
@@ -138,9 +140,10 @@ def weather_Data():
     city = city_Name.get().capitalize()
     URL = f"https://api.openweathermap.org/data/2.5/weather?q={city}&lang=en&units=metric&appid={API_Key}"
     if city != "" or city != " ":
-        responce = request.get(URL)
-        # json_Responce = requests.get(URL).json()
-        json_Responce = responce.json()
+        # responce = request.get(URL)
+        # print(responce.text)
+        json_Responce = requests.get(URL).json()
+        # json_Responce = responce.json()
 
         # print(responce)
         # print(json_Responce)
